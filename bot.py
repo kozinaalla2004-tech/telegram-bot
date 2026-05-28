@@ -28,7 +28,20 @@ API_TOKEN = "8292643567:AAFIrZdrCgdIVAJhMPorHuRZ24c44RGwO9Q"  # ← Вставь
 ADMIN_ID = 983562369  # ← Твой ID
 
 session = AiohttpSession(timeout=60)
-bot = Bot(token=API_TOKEN, session=session)
+from aiogram.client.session.aiohttp import AiohttpSession
+from aiohttp import ClientSession, TCPConnector
+import ssl
+
+# Отключаем проверку SSL (для обхода блокировок)
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
+
+connector = TCPConnector(ssl=ssl_context)
+session = ClientSession(connector=connector)
+aiogram_session = AiohttpSession(session=session)
+
+bot = Bot(token=API_TOKEN, session=aiogram_session)
 dp = Dispatcher()
 
 # === FILE_ID ФОТО (мгновенная отправка!) ===
