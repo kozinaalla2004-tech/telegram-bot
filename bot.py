@@ -1,3 +1,15 @@
+import sys
+import traceback
+
+# Логирование ошибок для Render
+def handle_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    print(f"❌ CRITICAL ERROR: {exc_type.__name__}: {exc_value}")
+    traceback.print_exception(exc_type, exc_value, exc_traceback)
+
+sys.excepthook = handle_exception
 import asyncio
 import random
 import os
