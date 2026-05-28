@@ -24,7 +24,7 @@ from datetime import datetime, timedelta
 logging.basicConfig(level=logging.INFO)
 
 # === НАСТРОЙКИ ===
-API_TOKEN = '8292643567:AAFIrZdrCgdIVAJhMPorHuRZ24c44RGwO9Q'  # ← Вставь свой токен
+API_TOKEN = 8292643567:AAFIrZdrCgdIVAJhMPorHuRZ24c44RGwO9Q  # ← Вставь свой токен
 ADMIN_ID = 983562369  # ← Твой ID
 
 session = AiohttpSession(timeout=60)
